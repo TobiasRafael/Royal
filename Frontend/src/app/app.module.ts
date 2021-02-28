@@ -1,3 +1,4 @@
+
 import { HousingService } from './services/housing.service';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -15,13 +16,13 @@ import { NotFoundComponent } from './not-found/not-found.component';
 
 
 const appRoutes: Routes = [
-  { path: '', component: PropertyListComponent },
-  { path: 'rent-property', component: PropertyListComponent },
-  { path: 'add-property', component: AddPropertyComponent },
-  { path: 'property-detail/:id', component: PropertyDetailComponent },
-  { path: '404', component: NotFoundComponent },
-  { path: '**', redirectTo: '/404'}
- ]
+  { path: '', component: PropertyListComponent, data: {navbar: true} },
+  { path: 'rent-property', component: PropertyListComponent, data: { navbar: true } },
+  { path: 'add-property', component: AddPropertyComponent, data: { navbar: true } },
+  { path: 'property-detail/:id', component: PropertyDetailComponent, data: { navbar: true } },
+  { path: '404', component: NotFoundComponent, data: {navbar: false} },
+  { path: '**', redirectTo: '/404', data: {navbar: false}}
+]
 
 @NgModule({
   declarations: [
