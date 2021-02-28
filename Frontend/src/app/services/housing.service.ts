@@ -8,18 +8,19 @@ import { Observable } from 'rxjs';
 })
 export class HousingService {
 
-  readonly propertiesArray: Array<IProperty>;
-  constructor(private http: HttpClient) {
-    this.propertiesArray = [];
-  }
+  constructor(private http: HttpClient) { }
 
-  getAllProperties(): Observable<IProperty[]> {
+  getAllProperties(SellRent: number): Observable<IProperty[]> {
     return this.http.get('data/properties.json').pipe(
       map(data => {
+        const propertiesArray: Array<IProperty> = [];
         for (const id in data) {
-          this.propertiesArray.push(data[id]);
+
+          if (data.hasOwnProperty(id) && +data[id].SellRent === SellRent) {
+            propertiesArray.push(data[id]);
+          }
         }
-        return this.propertiesArray;
+        return propertiesArray;
       })
     );
   }
