@@ -1,0 +1,73 @@
+[
+  {
+    "Id": 1,
+    "Name": "House 1",
+    "SellRent": "1",
+    "Type": "House",
+    "Price": 12000,
+    "Image": "house"
+  },
+  {
+    "Id": 2,
+    "Name": "House 2",
+    "SellRent": "2",
+    "Type": "House",
+    "Price": 12000,
+    "Image": "property-2"
+  },
+  {
+    "Id": 3,
+    "Name": "House 3",
+    "SellRent": "1",
+    "Type": "House",
+    "Price": 12000,
+    "Image": "property-3"
+  },
+  {
+    "Id": 4,
+    "Name": "House 4",
+    "SellRent": "1",
+    "Type": "House",
+    "Price": 12000,
+    "Image": "property-4"
+  },
+  {
+    "Id": 5,
+    "Name": "House 5",
+    "SellRent": "2",
+    "Type": "House",
+    "Price": 12000,
+    "Image": "property-5"
+  },
+  {
+    "Id": 6,
+    "Name": "House 6",
+    "SellRent": "1",
+    "Type": "House",
+    "Price": 12000,
+    "Image": "property-6"
+  },
+  {
+    "Id": 7,
+    "Name": "House 7",
+    "SellRent": "2",
+    "Type": "House",
+    "Price": 12000,
+    "Image": "property-7"
+  },
+  {
+    "Id": 8,
+    "Name": "House 8",
+    "SellRent": "2",
+    "Type": "House",
+    "Price": 12000,
+    "Image": "property-8"
+  },
+  {
+    "Id": 9,
+    "Name": "Rafa House",
+    "SellRent": "2",
+    "Type": "House",
+    "Price": 12000
+  }
+]
