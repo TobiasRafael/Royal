@@ -21,8 +21,7 @@ const appRoutes: Routes = [
   { path: 'property-detail/:id', component: PropertyDetailComponent },
   { path: '404', component: NotFoundComponent },
   { path: '**', redirectTo: '/404'}
-]
-
+ ]
 
 @NgModule({
   declarations: [
