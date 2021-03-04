@@ -30,7 +30,6 @@ export class NavBarComponent implements OnInit {
         mergeMap(route => route.data),
       )
       .subscribe(event => {
-        debugger;
         this.showToolbar(event.navbar);
       });
   }

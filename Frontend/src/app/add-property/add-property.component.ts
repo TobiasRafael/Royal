@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { NgForm, FormGroup, Validators, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
@@ -8,13 +9,34 @@ import { Router } from '@angular/router';
 })
 export class AddPropertyComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  public addPropertyForm: FormGroup;
+
+  constructor(private router: Router) {
+    this.addPropertyForm = new FormGroup({
+      name: new FormControl(null, [Validators.required, Validators.minLength(5)]),
+      type: new FormControl(null, Validators.required),
+      price: new FormControl(null, Validators.required)
+    });
+  }
 
   ngOnInit(): void {
   }
 
-  onBack(){
-    this.router.navigate(['/']);
+  get Name() {
+    return this.addPropertyForm.get('name') as FormControl;
+  }
+
+  get Type() {
+    return this.addPropertyForm.get('type') as FormControl;
+  }
+
+  get Price() {
+    return this.addPropertyForm.get('price') as FormControl;
+  }
+
+
+  onSubmit() {
+    console.log(this.addPropertyForm);
   }
 
 }

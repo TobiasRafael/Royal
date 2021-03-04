@@ -1,3 +1,40 @@
-<p>add-property works!</p>
-<div class="button btn btn-primary" (click)="onBack()">Back</div>
-
+<div class="card">
+  <div class="card-header">Add New Property</div>
+  <div class="card-body">
+    <form [formGroup]="addPropertyForm" (ngSubmit)="onSubmit()">
+      <div class="form-group col-12">
+        <label for="name">Name</label>
+        <input type="text" class="form-control" formControlName="name" />
+        <span *ngIf="!Name.valid && Name.touched" class="error-block">
+          <span *ngIf="Name.hasError('required')"> Please provide name</span>
+          <span *ngIf="Name.hasError('minlength')">
+            Name should not be lesser than 5 characters</span>
+        </span>
+      </div>
+      <div class="form-group col-12">
+        <label for="name">Type</label>
+        <input type="text" class="form-control" formControlName="type" />
+        <span *ngIf="!Type.valid && Type.touched" class="error-block">
+          <span *ngIf="Type.hasError('required')">
+            Please provide a type
+          </span>
+        </span>
+      </div>
+      <div class="form-group col-12">
+        <label for="name">Price</label>
+        <input type="text" class="form-control" formControlName="price" />
+        <span *ngIf="!Price.valid && Price.touched" class="error-block">
+        <span *ngIf="Price.hasError('required')">
+            Please provide a price
+        </span>
+        </span>
+      </div>
+      <div class="form-group col-12">
+        <button [disabled]="!addPropertyForm.valid" type="submit" class="btn btn-primary mr-2">
+          Save
+        </button>
+        <button type="reset" class="btn btn-primary">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>
