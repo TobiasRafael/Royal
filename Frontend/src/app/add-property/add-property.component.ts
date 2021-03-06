@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { NgForm, FormGroup, Validators, FormControl } from '@angular/forms';
+import { NgForm, FormGroup, Validators, FormControl, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
@@ -11,12 +11,12 @@ export class AddPropertyComponent implements OnInit {
 
   public addPropertyForm: FormGroup;
 
-  constructor(private router: Router) {
-    this.addPropertyForm = new FormGroup({
-      name: new FormControl(null, [Validators.required, Validators.minLength(5)]),
-      type: new FormControl(null, Validators.required),
-      price: new FormControl(null, Validators.required)
-    });
+  constructor(private router: Router, private fg: FormBuilder) {
+    this.addPropertyForm = this.fg.group({
+      name: [null, [Validators.required, Validators.minLength(5)]],
+      type: [null, Validators.required],
+      price: [null, Validators.required]
+    })
   }
 
   ngOnInit(): void {
@@ -34,9 +34,7 @@ export class AddPropertyComponent implements OnInit {
     return this.addPropertyForm.get('price') as FormControl;
   }
 
-
   onSubmit() {
     console.log(this.addPropertyForm);
   }
-
 }

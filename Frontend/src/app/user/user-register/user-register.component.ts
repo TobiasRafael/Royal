@@ -1,6 +1,9 @@
+import { User } from './../../model/user';
+import { UserService } from './../../services/user/user.service';
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators, AbstractControl } from '@angular/forms';
 import { fromEventPattern } from 'rxjs';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-user-register',
@@ -10,22 +13,30 @@ import { fromEventPattern } from 'rxjs';
 export class UserRegisterComponent implements OnInit {
 
   public registrationForm: FormGroup;
-  constructor() {
+  user: User;
+  userSubmitted: boolean = false;
 
-    this.registrationForm = new FormGroup({
-      userName: new FormControl(null, Validators.required),
-      email: new FormControl(null, [Validators.required, Validators.email]),
-      password: new FormControl(null, [Validators.required, Validators.minLength(8)]),
-      confirmPassword: new FormControl(null, [Validators.required]),
-      mobile: new FormControl(null, [Validators.required, Validators.maxLength(10)])
-    }, this.passwordMatchingValidator as Validators);
+  constructor(private fb: FormBuilder, private userService: UserService) {
 
+    this.registrationForm = this.fb.group({
+      userName: [null, Validators.required],
+      email: [null, [Validators.required, Validators.email]],
+      password: [null, [Validators.required, Validators.minLength(8)]],
+      confirmPassword: [null, Validators.required],
+      mobile: [null, [Validators.required, Validators.maxLength(10)]]
+    }, { validators: this.passwordMatchingValidator });
+
+    this.user = {
+      userName: this.userName.value,
+      email: this.email.value,
+      password: this.password.value,
+      mobile: this.mobile.value
+    }
   }
 
-  passwordMatchingValidator(fg: FormGroup): Validators | null {
+  passwordMatchingValidator(fg: AbstractControl): Validators | null {
     return fg.get('password')?.value === fg.get('confirmPassword')?.value ? null : { notmatched: true };
   }
-
 
   ngOnInit(): void {
   }
@@ -51,8 +62,19 @@ export class UserRegisterComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.registrationForm);
+    console.log(this.registrationForm.value);
+    this.userSubmitted = true;
+    if (this.registrationForm.valid) {
+      this.user = Object.assign(this.user, this.registrationForm.value);
+      this.userService.AddUser(this.user);
+      this.registrationForm.reset();
+      this.userSubmitted = false;
+    }
   }
+
+
+
+
 
 
 }

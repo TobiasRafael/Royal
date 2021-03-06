@@ -1,6 +1,6 @@
 
 import { IProperty } from './../property/IProperty.interface';
-import { HousingService } from './../services/housing.service';
+import { HousingService } from '../services/housing/housing.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
